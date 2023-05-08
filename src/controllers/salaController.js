@@ -9,6 +9,5 @@ exports.get=async(req,res)=>{
 }
 
 exports.get=()=>{
-    let salaMOdel = require('../models/salaModel');
     return salaModel.listarSalas();
 }

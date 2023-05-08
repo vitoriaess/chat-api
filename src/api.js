@@ -16,10 +16,18 @@ app.use("/", router.get("/sobre", (req, res, next) =>{
     })
 }));
 
-app.use("/salas", router.get("/salas", (req, res, next) => {
+app.use("/salas", router.get("/salas", async(req, res, next) => {
     const salaController = require("./controllers/salaController");
-    let resp=salaController.get();
+    let resp=await salaController.get();
     res.status(200).send(resp);
 }));
+
+app.use("/entrar", router.post("/entrar", async(req, res, next)=> {
+    const usuarioController = require("./controllers/usuarioController");
+    let resp = await usuarioController.entrar(req.body.nick);
+    res.status(200).send(resp);
+}));
+
+
 
 module.exports=app;
